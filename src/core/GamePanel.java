@@ -1,10 +1,10 @@
 package core;
 
+import hud.HUD;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import map.GridBoard;
 import utils.Constants;
 
@@ -12,21 +12,33 @@ class GamePanel extends JPanel implements ActionListener {
 
     private Timer timer;
     private GridBoard gridBoard;
+    private HUD hud;
 
     public GamePanel() {
 
         setBackground(Color.WHITE);
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));  // Align panels horizontally (left and right)
 
+        hud = new HUD(); // Initialize HUD
+        
+         
         // Create the first container (left HUD part)
         JPanel firstContainer = new JPanel();
+         
+        ;
         firstContainer.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH / 5, Constants.WINDOW_HEIGHT));
-        firstContainer.setBackground(Color.BLUE);
+        firstContainer.setOpaque(false); // This makes the panel non-opaque
+        firstContainer.setBackground(new Color(0, 0, 0, 0)); // Fully transparent background
+        firstContainer.setBackground(Color.RED);
         firstContainer.setLayout(new BorderLayout()); // Vertical stacking inside the HUD
+       
+        firstContainer.add(hud);
+        
+        
+        
+        
 
-        JLabel cowListLabel = new JLabel("Cow list + currency should be here");
-        cowListLabel.setForeground(Color.WHITE);
-        firstContainer.add(cowListLabel, BorderLayout.NORTH);
+        
 
         // Create the second container to hold the GridBoard and Barn
         JPanel secondContainer = new JPanel();
