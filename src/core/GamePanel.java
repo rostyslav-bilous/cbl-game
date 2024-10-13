@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import hud.LeftHUDPanel;
 import map.GridBoard;
 import utils.Constants;
 
@@ -20,13 +21,12 @@ class GamePanel extends JPanel implements ActionListener {
 
         // Create the first container (left HUD part)
         JPanel firstContainer = new JPanel();
-        firstContainer.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH / 5, Constants.WINDOW_HEIGHT));
+        firstContainer.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH / 7, Constants.WINDOW_HEIGHT));
         firstContainer.setBackground(Color.BLUE);
-        firstContainer.setLayout(new BorderLayout()); // Vertical stacking inside the HUD
+        firstContainer.setLayout(new BorderLayout());
+        LeftHUDPanel leftHUDPanel = new LeftHUDPanel();
+        firstContainer.add(leftHUDPanel);
 
-        JLabel cowListLabel = new JLabel("Cow list + currency should be here");
-        cowListLabel.setForeground(Color.WHITE);
-        firstContainer.add(cowListLabel, BorderLayout.NORTH);
 
         // Create the second container to hold the GridBoard and Barn
         JPanel secondContainer = new JPanel();

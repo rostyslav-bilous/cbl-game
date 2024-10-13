@@ -14,6 +14,7 @@ public class Tile extends JButton {
     private int row;
     private int col;
     private GridBoard gridBoard; // Reference to the GridBoard
+    private String selectedTower = null;
 
     public Tile(int row, int col, GridBoard gridBoard) {
         this.row = row;
@@ -33,8 +34,8 @@ public class Tile extends JButton {
                     occupied = true;
                     setBackground(Color.RED);
 
-                    int x = col * Constants.TILE_WIDTH;
-                    int y = row * Constants.TILE_HEIGHT;
+                    int x = col * Constants.TILE_WIDTH + 22;
+                    int y = row * Constants.TILE_HEIGHT + 25;
                     System.out.println("Placing MooCop at: (" + x + ", " + y + ")");
                     MooCop mooCop = new MooCop(x, y);
                     gridBoard.getTowerManager().addTower(mooCop);
@@ -43,5 +44,9 @@ public class Tile extends JButton {
                 }
             }
         });
+    }
+
+    public void setSelectedTower(String towerName) {
+        this.selectedTower = towerName;
     }
 }
