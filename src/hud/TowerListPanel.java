@@ -29,7 +29,7 @@ public class TowerListPanel extends JPanel {
 
     private void initializeTowerButtons() {
         // Example tower names; replace with actual Tower instances if necessary
-        String[] towerNames = {"MooCop", "Dairy Potter"}; // Add more names if needed
+        String[] towerNames = {"MooCop", "DairyPotter"}; // Add more names if needed
 
         for (String towerName : towerNames) {
             TowerButton button = new TowerButton(towerName);

@@ -24,12 +24,12 @@ public class TowerButton extends JButton{
         setHorizontalAlignment(CENTER);
         setVerticalAlignment(CENTER);
 
-        // addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         gridBoard.setSelectedTower(towerName);
-        //     }
-        // });
+        addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Tile.selectedTower = towerName;
+            }
+        });
     }
 
 

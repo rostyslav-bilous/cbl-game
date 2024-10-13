@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.JButton;
 
 import entities.Tower;
+import entities.towers.DairyPotter;
 import entities.towers.MooCop;
 import utils.Constants;
 
@@ -14,7 +15,7 @@ public class Tile extends JButton {
     private int row;
     private int col;
     private GridBoard gridBoard; // Reference to the GridBoard
-    private String selectedTower = null;
+    public static String selectedTower = null;
 
     public Tile(int row, int col, GridBoard gridBoard) {
         this.row = row;
@@ -31,22 +32,34 @@ public class Tile extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!occupied) {
-                    occupied = true;
-                    setBackground(Color.RED);
 
                     int x = col * Constants.TILE_WIDTH + 22;
                     int y = row * Constants.TILE_HEIGHT + 25;
-                    System.out.println("Placing MooCop at: (" + x + ", " + y + ")");
-                    MooCop mooCop = new MooCop(x, y);
-                    gridBoard.getTowerManager().addTower(mooCop);
+                    System.out.println("Placing tower at: (" + x + ", " + y + ")");
 
-                    gridBoard.repaint();
+                    Tower tower = createTower(selectedTower, x, y);
+                    if (tower != null) {
+                        occupied = true;
+                        setBackground(Color.RED);
+                        gridBoard.getTowerManager().addTower(tower);
+                        gridBoard.repaint();
+                    } else {
+                        System.out.println("Tower type not recognized.");
+                    }
+                    selectedTower = null;
                 }
             }
         });
     }
 
-    public void setSelectedTower(String towerName) {
-        this.selectedTower = towerName;
+    private Tower createTower(String towerType, int x, int y) {
+        switch (towerType) {
+            case "MooCop":
+                return new MooCop(x, y);
+            case "DairyPotter":
+                return new DairyPotter(x, y);
+            default:
+                return null; // Unrecognized tower type
+        }
     }
 }

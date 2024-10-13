@@ -19,7 +19,7 @@ public class LeftHUDPanel extends JPanel {
         add(moneyPanel);
         add(towerListPanel);
         spacer.setOpaque(false);
-        spacer.setPreferredSize(new Dimension(1000, 400));
+        spacer.setPreferredSize(new Dimension(1000, 300));
         add(spacer);
     }
 }
