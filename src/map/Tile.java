@@ -3,7 +3,6 @@ package map;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JButton;
-
 import utils.Constants;
 
 public class Tile extends JButton {
@@ -13,7 +12,7 @@ public class Tile extends JButton {
     public Tile() {
 
         setPreferredSize(new Dimension(Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        setBackground(Color.GREEN);
+        setBackground(Color.green);
 
         addActionListener(new ActionListener() {
             @Override

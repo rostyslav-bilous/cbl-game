@@ -8,22 +8,28 @@ import javax.swing.border.EmptyBorder;
 import map.GridBoard;
 import utils.Constants;
 
+
 class GamePanel extends JPanel implements ActionListener {
 
     private Timer timer;
     private GridBoard gridBoard;
     private HUD hud;
+    private Image backgroundImage;
 
     public GamePanel() {
-        setBackground(Color.WHITE);
+        this.setOpaque(true);
         setLayout(new GridBagLayout());  // Align panels horizontally (left and right)
         GridBagConstraints gbc = new GridBagConstraints();
         
+        backgroundImage = new ImageIcon(getClass().getResource("finalgrass.png")).getImage(); // image object
         
+        
+
+
         // Create the first container (left HUD part)
         JPanel firstContainer = new JPanel();
         firstContainer.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH / 5, Constants.WINDOW_HEIGHT));
-        firstContainer.setBackground(Color.blue);
+        firstContainer.setOpaque(false);
         firstContainer.setLayout(new GridBagLayout()); // Use BoxLayout for vertical stacking
         
 
@@ -46,14 +52,14 @@ class GamePanel extends JPanel implements ActionListener {
         gbc2.weighty = 1.0;
 
         JPanel leftThinPanel = new JPanel();
-        leftThinPanel.setBackground(Color.yellow);
+        leftThinPanel.setOpaque(false);
         gbc2.gridx = 0;
         gbc2.gridy = 1;
         gbc2.weightx = 0.01;
         firstContainer.add(leftThinPanel, gbc2);
 
         JPanel rightThinPanel = new JPanel();
-        rightThinPanel.setBackground(Color.yellow);
+        rightThinPanel.setOpaque(false);
         gbc2.gridx = 2;
         gbc2.gridy = 1;
         gbc2.weightx = 0.01;
@@ -64,7 +70,7 @@ class GamePanel extends JPanel implements ActionListener {
         JPanel midPanel = new JPanel(new GridBagLayout()); // Your existing panel
         HUD hud = new HUD(); // Your HUD panel
         GridBagConstraints gbc3 = new GridBagConstraints();
-        midPanel.setBackground(Color.yellow);
+        midPanel.setOpaque(false);
         gbc3.fill = GridBagConstraints.BOTH; // Allow HUD to fill both horizontally and vertically
         gbc3.weightx = 1.0; // Take up all horizontal space
         gbc3.weighty = 1.0; // Take up all vertical space
@@ -78,7 +84,7 @@ class GamePanel extends JPanel implements ActionListener {
         firstContainer.add(midPanel, gbc2);
 
         JPanel topThinPanel = new JPanel();
-        topThinPanel.setBackground(Color.yellow);
+        topThinPanel.setOpaque(false);
         gbc2.gridy = 0; // Row 0
         gbc2.gridx = 0;
         gbc2.gridwidth = 3;
@@ -87,7 +93,7 @@ class GamePanel extends JPanel implements ActionListener {
         firstContainer.add(topThinPanel, gbc2);
 
         JPanel bottomThinPanel = new JPanel();
-        bottomThinPanel.setBackground(Color.yellow);
+        bottomThinPanel.setOpaque(false);
         gbc2.gridy = 2; // Row 0
         gbc2.gridx = 0;
         gbc2.gridwidth = 3;
@@ -102,16 +108,17 @@ class GamePanel extends JPanel implements ActionListener {
         // Create the second container to hold the GridBoard and Barn
         JPanel secondContainer = new JPanel();
         //secondContainer.setPreferredSize(new Dimension((4 * Constants.WINDOW_WIDTH) / 5, Constants.WINDOW_HEIGHT));
-        secondContainer.setBackground(Color.RED);
+        secondContainer.setOpaque(false);
         secondContainer.setLayout(new BoxLayout(secondContainer, BoxLayout.Y_AXIS)); // Vertical stacking inside the right container
 
         // Create a container for the center section (GridBoard and Barn side by side)
         JPanel centerContainer = new JPanel();
+        centerContainer.setOpaque(false);
         centerContainer.setLayout(new BoxLayout(centerContainer, BoxLayout.X_AXIS));
 
         // Create a container for the GridBoard
         JPanel gridMapContainer = new JPanel(new GridBagLayout());
-        gridMapContainer.setBackground(Color.GRAY);
+        gridMapContainer.setOpaque(false);
         gridMapContainer.setPreferredSize(new Dimension(4 * Constants.WINDOW_WIDTH / 5, 600));
         gridBoard = new GridBoard();
         gridMapContainer.add(gridBoard);
@@ -165,5 +172,11 @@ class GamePanel extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        if (backgroundImage != null) {
+            g2d.drawImage(backgroundImage, 0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, this);
+        }else{
+            setBackground(Color.MAGENTA);
+        }
     }
 }
