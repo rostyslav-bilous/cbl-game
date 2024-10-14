@@ -15,6 +15,10 @@ public class DairyPotter extends Tower {
         super(x, y, 50, 70, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE);
     }
 
+    @Override
+    public void act() {
+        
+    }
 
     @Override
     public void draw(Graphics g) {

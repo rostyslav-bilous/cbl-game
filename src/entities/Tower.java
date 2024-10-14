@@ -8,37 +8,37 @@ public abstract class Tower{
     protected int x, y, width, height;
     protected int health;
     protected boolean alive;
-    protected int attackDamage;
-    protected int attackSpeed;
-    protected int attackCooldown;
+    protected int actionValue; // Damage dealing, milk production, etc.
+    protected int actionSpeed;
+    protected int actionCooldown;
     protected int buyPrice;
 
     public Tower(int x, int y, int width, int height, int health, 
-            int attackDamage, int attackSpeed, int buyPrice) {
+            int actionValue, int actionSpeed, int buyPrice) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;   
         this.health = health;
         this.alive = true;
-        this.attackDamage = attackDamage;
-        this.attackSpeed = attackSpeed;
+        this.actionValue = actionValue;
+        this.actionSpeed = actionSpeed;
         this.buyPrice = buyPrice;
-        this.attackCooldown = 0;
+        this.actionCooldown = 0;
     }
 
     public void updateCooldown() {
-        if (attackCooldown > 0) {
-            attackCooldown--;
+        if (actionCooldown > 0) {
+            actionCooldown--;
         }
     }
 
-    public boolean canAttack() {
-        return attackCooldown <= 0;
+    public boolean canAct() {
+        return actionCooldown <= 0;
     }
 
     public void resetCooldown() {
-        attackCooldown = attackSpeed;
+        actionCooldown = actionSpeed;
     }
 
     public void takeDamage(int damage) {
@@ -48,5 +48,10 @@ public abstract class Tower{
         }
     }
 
-    public abstract void draw(Graphics g); 
+    public int getActionValue() {
+        return actionValue;
+    }
+
+    public abstract void act(); 
+    public abstract void draw(Graphics g);
 }

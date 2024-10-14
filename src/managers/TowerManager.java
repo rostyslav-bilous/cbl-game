@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import entities.Tower;
+import entities.towers.MooCop;
 import map.*;
 
 public class TowerManager {
@@ -16,6 +17,15 @@ public class TowerManager {
 
     public void addTower(Tower tower) {
         placedTowers.add(tower);
+    }
+
+    public void update() {
+        for (Tower tower : placedTowers) {
+            tower.updateCooldown();
+            if (tower.getActionValue() > 0) {
+                tower.act();
+            }
+        }
     }
 
     public void draw(Graphics g) {

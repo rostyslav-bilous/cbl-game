@@ -1,8 +1,12 @@
 package entities.towers;
 
+import entities.Projectile;
 import entities.Tower;
+import managers.ProjectileManager;
+import map.GridBoard;
 
 import java.awt.*;
+// import entities.Projectile;
 
 public class MooCop extends Tower {
 
@@ -15,6 +19,19 @@ public class MooCop extends Tower {
         super(x, y, 50, 70, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE);
     }
 
+    @Override
+    public void act() {
+        
+        if (canAct()) {
+            Projectile projectile = new Bullet(x + width, y + 20);
+            GridBoard.getProjectileManager().add(projectile);
+            resetCooldown();
+        }
+    }
+
+    public static int getDamage() {
+        return DEFAULT_DAMAGE;
+    }
 
     @Override
     public void draw(Graphics g) {
@@ -22,7 +39,24 @@ public class MooCop extends Tower {
         g.setColor(Color.WHITE);
         g.fillOval(x, y, width, height);
         // Debugging
-        System.out.println("Drawing MooCop at (" + x + ", " + y + ") with size " + width + "x" + height);
-        // System.out.println("MooCop on the grid");
+        // System.out.println("Drawing MooCop at (" + x + ", " + y + ") with size " + width + "x" + height);
+    }
+}
+
+
+class Bullet extends Projectile {
+
+    private static final int DEFAULT_WIDTH = 30;
+    private static final int DEFAULT_HEIGHT = 5;
+    private static final int DEFAULT_SPEED = 50;
+
+    public Bullet(int x, int y) {
+        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_SPEED, MooCop.getDamage());
+    }
+
+    public void draw(Graphics g) {
+
+        g.setColor(Color.RED);
+        g.fillOval(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 }
