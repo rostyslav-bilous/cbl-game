@@ -56,6 +56,10 @@ public abstract class Tower{
         return actionCooldown;
     }
 
+    public int getTowerPrice() {
+        return buyPrice;
+    }
+
     public abstract void act(); 
     public abstract void draw(Graphics g);
 }

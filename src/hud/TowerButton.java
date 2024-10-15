@@ -1,23 +1,20 @@
 package hud;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-
-import map.GridBoard;
 import map.Tile;
 
-public class TowerButton extends JButton{
-    
-    String towerName;
-    // GridBoard gridBoard;
+public class TowerButton extends JButton {
 
-    public TowerButton(String towerName) {
+    private String towerName;
+    private int towerPrice;  // Tower price for validation
 
-        // setPreferredSize(new Dimension(100, 400));
-        // this.gridBoard = gridBoard;
+    public TowerButton(String towerName, int towerPrice) {
+        this.towerName = towerName;
+        this.towerPrice = towerPrice;
+
         setBackground(Color.BLACK);
         setText(towerName);
         setForeground(Color.WHITE);
@@ -27,10 +24,20 @@ public class TowerButton extends JButton{
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Tile.selectedTower = towerName;
+                // Check if player has enough money to buy the tower
+                if (enoughMoney()) {
+                    Tile.selectedTower = towerName;
+                    Tile.selectedTowerPrice = towerPrice;
+
+                    System.out.println(towerName + " selected for placement.");
+                } else {
+                    System.out.println("Not enough money to buy " + towerName);
+                }
             }
         });
     }
 
-
+    private boolean enoughMoney() {
+        return LeftHUDPanel.getMoneyPanel().getMoney() >= towerPrice;
+    }
 }

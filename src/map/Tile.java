@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import entities.Tower;
 import entities.towers.DairyPotter;
 import entities.towers.MooCop;
+import hud.LeftHUDPanel;
 import utils.Constants;
 
 public class Tile extends JButton {
@@ -16,6 +17,7 @@ public class Tile extends JButton {
     private int col;
     private GridBoard gridBoard; // Reference to the GridBoard
     public static String selectedTower = null;
+    public static int selectedTowerPrice = 0;
 
     public Tile(int row, int col, GridBoard gridBoard) {
         this.row = row;
@@ -33,6 +35,8 @@ public class Tile extends JButton {
             public void actionPerformed(ActionEvent e) {
                 if (!occupied) {
 
+                    LeftHUDPanel.getMoneyPanel().decreaseMoneyBy(selectedTowerPrice);
+                    selectedTowerPrice = 0;
                     int x = col * Constants.TILE_WIDTH + 22;
                     int y = row * Constants.TILE_HEIGHT + 25;
                     System.out.println("Placing tower at: (" + x + ", " + y + ")");

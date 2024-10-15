@@ -26,12 +26,4 @@ public class LeftHUDPanel extends JPanel {
     public static MoneyPanel getMoneyPanel() {
         return moneyPanel;
     }
-
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        moneyPanel.draw(g);
-    }
 }
