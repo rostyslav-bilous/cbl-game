@@ -52,6 +52,10 @@ public abstract class Tower{
         return actionValue;
     }
 
+    public int getActionCooldown() {
+        return actionCooldown;
+    }
+
     public abstract void act(); 
     public abstract void draw(Graphics g);
 }

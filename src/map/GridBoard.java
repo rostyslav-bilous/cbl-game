@@ -48,6 +48,9 @@ public class GridBoard extends JPanel {
 
         // Added a test enemy to continue with tower attacking and collision detection
         enemyManager.addEnemy(new StandardAlien(Constants.TILE_WIDTH * 8 + 20, 140));
+        enemyManager.addEnemy(new StandardAlien(Constants.TILE_WIDTH * 8 + 20, 255));
+        enemyManager.addEnemy(new StandardAlien(Constants.TILE_WIDTH * 7 + 20, 370));
+        enemyManager.addEnemy(new StandardAlien(Constants.TILE_WIDTH * 6 + 20, 485));
     }
 
     public TowerManager getTowerManager() {

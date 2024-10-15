@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class LeftHUDPanel extends JPanel {
 
-    MoneyPanel moneyPanel;
+    private static MoneyPanel moneyPanel;
     TowerListPanel towerListPanel;
 
     public LeftHUDPanel() {
@@ -21,5 +21,17 @@ public class LeftHUDPanel extends JPanel {
         spacer.setOpaque(false);
         spacer.setPreferredSize(new Dimension(1000, 300));
         add(spacer);
+    }
+
+    public static MoneyPanel getMoneyPanel() {
+        return moneyPanel;
+    }
+
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        moneyPanel.draw(g);
     }
 }

@@ -1,27 +1,19 @@
 package hud;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import java.awt.*;
 
 public class MoneyPanel extends JPanel{
 
     private int money = 100;
-    JLabel moneyLabel;
 
     public MoneyPanel() {
         
         setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(200, 100));
-        setBackground(Color.BLUE);
-        moneyLabel = new JLabel(money + " Milk buckets");
-        moneyLabel.setForeground(Color.WHITE);
-        add(moneyLabel);
+        setOpaque(false);
     }
     
     public void increaseMoneyBy(int amount) {
@@ -30,5 +22,12 @@ public class MoneyPanel extends JPanel{
 
     public void decreaseMoneyBy(int amount) {
         money -= amount;
+    }
+
+    public void draw(Graphics g) {
+
+        g.setFont(new Font("Times New Roman", Font.BOLD, 20)); 
+        g.setColor(Color.BLACK); // Example: Blue color
+        g.drawString("Milk // " + money, 10, 60);
     }
 }

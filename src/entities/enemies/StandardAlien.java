@@ -19,6 +19,7 @@ public class StandardAlien extends Enemy{
         
         g.setColor(Color.RED);
         g.fillOval(x, y, width, height);
+        g.drawString("" + health, x, y - 10); // Debugging
         // Debugging
         // System.out.println("Drawing StandardAlien at (" + x + ", " + y + ") with size " + width + "x" + height);
     }
