@@ -34,7 +34,10 @@ public class DairyPotter extends Tower {
         g.setColor(Color.WHITE);
         g.fillRect(x, y, width, height);
 
+        // Debugging
+        g.setColor(Color.WHITE);
+        g.drawString("Cooldown: " + getActionCooldown(), x, y - 15);
         g.setColor(Color.GREEN);
-        g.drawString("" + getActionCooldown(), x, y - 10);
+        g.drawString("HP: " + getHealth(), x, y - 5);
     }
 }

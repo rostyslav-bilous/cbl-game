@@ -60,6 +60,15 @@ public abstract class Tower{
         return buyPrice;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+
+    public boolean isAlive() {
+        return alive;
+    }
+
     public abstract void act(); 
     public abstract void draw(Graphics g);
 }

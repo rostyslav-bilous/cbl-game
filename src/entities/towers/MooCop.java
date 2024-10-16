@@ -39,8 +39,12 @@ public class MooCop extends Tower {
         g.setColor(Color.WHITE);
         g.fillOval(x, y, width, height);
 
+        // Debugging
+        g.setColor(Color.WHITE);
+        g.drawString("Cooldown: " + getActionCooldown(), x, y - 15);
         g.setColor(Color.GREEN);
-        g.drawString("" + getActionCooldown(), x, y - 10);
+        g.drawString("HP: " + getHealth(), x, y - 5);
+        
         // Debugging
         // System.out.println("Drawing MooCop at (" + x + ", " + y + ") with size " + width + "x" + height);
     }
@@ -51,7 +55,7 @@ class Bullet extends Projectile {
 
     private static final int DEFAULT_WIDTH = 30;
     private static final int DEFAULT_HEIGHT = 5;
-    private static final int DEFAULT_SPEED = 50;
+    private static final int DEFAULT_SPEED = 10;
 
     public Bullet(int x, int y) {
         super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_SPEED, MooCop.getDamage());

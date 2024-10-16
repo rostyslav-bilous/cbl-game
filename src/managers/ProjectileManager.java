@@ -28,7 +28,7 @@ public class ProjectileManager {
         Iterator<Projectile> iterator = projectiles.iterator();
         while (iterator.hasNext()) {
             Projectile p = iterator.next();
-            p.update();
+            p.updatePosition();
     
             if (!p.isActive()) {
                 iterator.remove();

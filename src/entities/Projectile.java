@@ -38,7 +38,7 @@ public abstract class Projectile {
             && y < enemy.y + enemy.height;
     }
 
-    public void update() {
+    public void updatePosition() {
         x += speed; // Move the projectile forward
     
         // Deactivate if it goes off-screen

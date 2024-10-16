@@ -11,9 +11,11 @@ public abstract class Enemy{
     protected int attackDamage;
     protected int attackSpeed;
     protected int attackCooldown;
+    protected int movementSpeed;
+    protected boolean isMoving = true;
 
     public Enemy(int x, int y, int width, int height, int health, 
-            int attackDamage, int attackSpeed) {
+            int attackDamage, int attackSpeed, int movementSpeed) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -23,6 +25,7 @@ public abstract class Enemy{
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
         this.attackCooldown = 0;
+        this.movementSpeed = movementSpeed;
     }
 
     public void updateCooldown() {
@@ -46,12 +49,49 @@ public abstract class Enemy{
         }
     }
 
-    protected void die() {
-        alive = false;
-    }
-
     public boolean isAlive() {
         return alive;
+    }
+
+    public void attack(Tower tower) {
+        
+        if (canAttack()) {
+            tower.takeDamage(attackDamage);
+            resetCooldown();
+        }
+    }
+
+    public void setStop() {
+        isMoving = false;
+    }
+
+    public void setMoving() {
+        isMoving = true;
+    }
+
+    public boolean collidesWith(Tower tower) {
+
+        return x + width > tower.x
+            && x < tower.x + tower.width
+            && y + height > tower.y
+            && y < tower.y + tower.height;
+    }
+
+    public void updatePosition() {
+
+        if (isMoving) {
+            x -= movementSpeed;
+        }
+    }
+
+    public void update() {
+
+        updatePosition();
+        updateCooldown();
+    }
+
+    public int getX() {
+        return x;
     }
 
     public abstract void draw(Graphics g);

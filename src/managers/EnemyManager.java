@@ -12,9 +12,11 @@ import entities.enemies.*;;
 public class EnemyManager {
     
     private List<Enemy> enemiesOnGrid;
+    private TowerManager towerManager;
 
-    public EnemyManager() {
+    public EnemyManager(TowerManager towerManager) {
         enemiesOnGrid = new ArrayList<>();
+        this.towerManager = towerManager;
     }
 
     public void addEnemy(Enemy enemy) {
@@ -41,7 +43,33 @@ public class EnemyManager {
                 iterator.remove();
                 continue;
             }
+
+            enemy.updatePosition();
             enemy.updateCooldown();
+
+            boolean isCollidingWithAnyTower = false;
+
+            for (Tower tower : towerManager.getTowersOnGrid()) {
+                if (enemy.collidesWith(tower)) {
+                    enemy.setStop();
+                    isCollidingWithAnyTower = true;
+
+                    enemy.updateCooldown();
+                    enemy.attack(tower);
+                    System.out.println("Enemy attacking tower."); // Debugging
+                } 
+            }
+
+            if (!isCollidingWithAnyTower) {
+                enemy.setMoving();
+            }
+
+            if (enemy.getX() <= 0) {
+                enemy.setStop();
+                // wait 3 seconds
+                // itarator.remove(); 
+            }
         }
+
     }
 }

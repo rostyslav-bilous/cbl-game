@@ -36,7 +36,7 @@ public class GridBoard extends JPanel {
         setPreferredSize(new Dimension(width, height));
 
         towerManager = new TowerManager();
-        enemyManager = new EnemyManager();
+        enemyManager = new EnemyManager(towerManager);
         projectileManager = new ProjectileManager(enemyManager);
 
         // Add tiles to the grid
