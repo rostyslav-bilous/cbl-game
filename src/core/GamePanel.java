@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import hud.LeftHUDPanel;
+import hud.TopHUDPanel;
 import map.GridBoard;
 import utils.Constants;
 
@@ -59,10 +60,8 @@ class GamePanel extends JPanel implements ActionListener {
         // Create a container for the top section of the HUD
         JPanel topHUDContainer = new JPanel(new BorderLayout());
         topHUDContainer.setBackground(Color.LIGHT_GRAY); // Background for top HUD
-
-        JLabel progressLabel = new JLabel("Civil cow counter and wave progress bar should be here");
-        progressLabel.setForeground(Color.BLACK);
-        topHUDContainer.add(progressLabel, BorderLayout.WEST);
+        TopHUDPanel topHUDPanel = new TopHUDPanel();
+        topHUDContainer.add(topHUDPanel, BorderLayout.WEST);
 
         // Add top HUD and centerContainer (which contains GridBoard and Barn) into secondContainer
         secondContainer.add(topHUDContainer);
@@ -78,7 +77,7 @@ class GamePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        updateGameLogic();
+        // updateGameLogic();
         repaint();
     }
 
