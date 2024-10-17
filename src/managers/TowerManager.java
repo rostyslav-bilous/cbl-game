@@ -22,6 +22,7 @@ public class TowerManager {
     }
 
     public void update() {
+        
         Iterator<Tower> iterator = placedTowers.iterator();
         while(iterator.hasNext()) {
             Tower tower = iterator.next();

@@ -56,12 +56,16 @@ public class Tile extends JButton {
         });
     }
 
+    public void setFree() {
+        occupied = false;
+    }
+    
     private Tower createTower(String towerType, int x, int y) {
         switch (towerType) {
             case "MooCop":
-                return new MooCop(x, y);
+                return new MooCop(x, y, this);
             case "DairyPotter":
-                return new DairyPotter(x, y);
+                return new DairyPotter(x, y, this);
             default:
                 return null; // Unrecognized tower type
         }

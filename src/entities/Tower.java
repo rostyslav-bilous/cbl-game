@@ -2,6 +2,8 @@ package entities;
 
 import java.awt.*;
 
+import map.Tile;
+
 
 public abstract class Tower{
 
@@ -12,9 +14,10 @@ public abstract class Tower{
     protected int actionSpeed;
     protected int actionCooldown;
     protected int buyPrice;
+    protected Tile tile;
 
     public Tower(int x, int y, int width, int height, int health, 
-            int actionValue, int actionSpeed, int buyPrice) {
+            int actionValue, int actionSpeed, int buyPrice, Tile tile) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -25,6 +28,7 @@ public abstract class Tower{
         this.actionSpeed = actionSpeed;
         this.buyPrice = buyPrice;
         this.actionCooldown = 0;
+        this.tile = tile;
     }
 
     public void updateCooldown() {
@@ -45,6 +49,7 @@ public abstract class Tower{
         health -= damage;
         if (health <= 0) {
             alive = false;
+            tile.setFree();
         }
     }
 

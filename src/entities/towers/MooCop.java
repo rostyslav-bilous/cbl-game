@@ -4,6 +4,7 @@ import entities.Projectile;
 import entities.Tower;
 import managers.ProjectileManager;
 import map.GridBoard;
+import map.Tile;
 
 import java.awt.*;
 // import entities.Projectile;
@@ -15,8 +16,8 @@ public class MooCop extends Tower {
     public static final int DEFAULT_ATTACK_SPEED = 60;
     public static final int DEFAULT_PRICE = 20;
 
-    public MooCop(int x, int y) {
-        super(x, y, 50, 70, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE);
+    public MooCop(int x, int y, Tile tile) {
+        super(x, y, 50, 70, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE, tile);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class MooCop extends Tower {
     @Override
     public void draw(Graphics g) {
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.CYAN);
         g.fillOval(x, y, width, height);
 
         // Debugging

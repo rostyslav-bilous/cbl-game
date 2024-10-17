@@ -25,6 +25,7 @@ public class ProjectileManager {
     }
 
     public void update() {
+        
         Iterator<Projectile> iterator = projectiles.iterator();
         while (iterator.hasNext()) {
             Projectile p = iterator.next();
