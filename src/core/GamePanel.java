@@ -1,11 +1,10 @@
 package core;
 
+import hud.LeftHUDPanel;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import hud.LeftHUDPanel;
 import map.GridBoard;
 import utils.Constants;
 
@@ -14,14 +13,16 @@ class GamePanel extends JPanel implements ActionListener {
     private Timer timer;
     private GridBoard gridBoard;
 
-    public GamePanel() {
 
+    public GamePanel() {
+        setPreferredSize(new Dimension(Constants.WINDOW_WIDTH , Constants.WINDOW_HEIGHT));
         setBackground(Color.WHITE);
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));  // Align panels horizontally (left and right)
+        setLayout(new GridBagLayout());  // Align panels horizontally (left and right)
+        GridBagConstraints gbc = new GridBagConstraints();
 
         // Create the first container (left HUD part)
         JPanel firstContainer = new JPanel();
-        firstContainer.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH / 7, Constants.WINDOW_HEIGHT));
+        //firstContainer.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH / 7, Constants.WINDOW_HEIGHT));
         firstContainer.setBackground(Color.BLUE);
         firstContainer.setLayout(new BorderLayout());
         LeftHUDPanel leftHUDPanel = new LeftHUDPanel();
@@ -30,7 +31,7 @@ class GamePanel extends JPanel implements ActionListener {
 
         // Create the second container to hold the GridBoard and Barn
         JPanel secondContainer = new JPanel();
-        secondContainer.setPreferredSize(new Dimension((4 * Constants.WINDOW_WIDTH) / 5, Constants.WINDOW_HEIGHT));
+        //secondContainer.setPreferredSize(new Dimension((4 * Constants.WINDOW_WIDTH) / 5, Constants.WINDOW_HEIGHT));
         secondContainer.setBackground(Color.RED);
         secondContainer.setLayout(new BoxLayout(secondContainer, BoxLayout.Y_AXIS)); // Vertical stacking inside the right container
 
@@ -69,8 +70,17 @@ class GamePanel extends JPanel implements ActionListener {
         secondContainer.add(centerContainer);
 
         // Add both containers to the main GamePanel
-        add(firstContainer); // Add left HUD (firstContainer)
-        add(secondContainer); // Add right section (GridBoard)
+        gbc.fill = GridBagConstraints.BOTH; // Fill both directions
+        gbc.gridx = 0; // First column
+        gbc.gridy = 0;
+        gbc.weightx = 0.2;
+        gbc.weighty = 1.0;
+        add(firstContainer, gbc); // Add left HUD (firstContainer)
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0.8;
+        add(secondContainer, gbc); // Add right section (GridBoard)
 
         timer = new Timer(1000 / Constants.GAME_FPS, this);
         timer.start();
@@ -78,13 +88,12 @@ class GamePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        updateGameLogic();
+        
         repaint();
     }
 
-    private void updateGameLogic() {
-        // Update your game logic here
-    }
+    
+
 
     @Override
     protected void paintComponent(Graphics g) {
