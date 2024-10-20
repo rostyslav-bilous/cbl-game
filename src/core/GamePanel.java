@@ -60,7 +60,7 @@ class GamePanel extends JPanel implements ActionListener {
         // Create a container for the top section of the HUD
         JPanel topHUDContainer = new JPanel(new BorderLayout());
         topHUDContainer.setBackground(Color.LIGHT_GRAY); // Background for top HUD
-        TopHUDPanel topHUDPanel = new TopHUDPanel();
+        TopHUDPanel topHUDPanel = new TopHUDPanel(Game.getInstance());
         topHUDContainer.add(topHUDPanel, BorderLayout.WEST);
 
         // Add top HUD and centerContainer (which contains GridBoard and Barn) into secondContainer

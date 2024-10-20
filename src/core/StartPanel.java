@@ -1,6 +1,9 @@
 package core;
 
 import javax.swing.*;
+
+import hud.TopHUDPanel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,58 +13,35 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import utils.StyledButton;
+
+
 class StartPanel extends JPanel {
 
-    private JButton startButton;
+    private StyledButton startButton;
+    private StyledButton githubButton;
+    private StyledButton lossPanelButton;
 
     public StartPanel(Game game) {
 
         setLayout(new GridBagLayout());
         setBackground(Color.BLACK);
 
-        startButton = new JButton("Start");
-        startButton.setBackground(new Color(50, 50, 50));
-        startButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
-        startButton.setForeground(Color.WHITE);
-        startButton.setPreferredSize(new Dimension(200, 70));
-        startButton.setFocusPainted(false);
-        startButton.setFont(new Font("Arial", Font.BOLD, 20));
+        // Start button
+        startButton = new StyledButton("| Start Game");
+        startButton.addActionListener(e -> game.showGamePanel());
 
-        startButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                startButton.setBackground(new Color(75, 75, 75));
-                startButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                startButton.setBackground(new Color(50, 50, 50));
-            }
-        });
+        // GitHub button
+        githubButton = new StyledButton("| GitHub Repository");
+        githubButton.addActionListener(e -> openWebpage("https://github.com/rostyslav-bilous/cbl-game"));
 
         JLabel gameName = new JLabel("Cows vs Aliens");
-        gameName.setForeground(Color.WHITE);
-        gameName.setFont(new Font("Arial", Font.BOLD, 40));
+        gameName.setForeground(new Color(255, 255, 255));
+        gameName.setFont(new Font("Trebuchet MS", Font.BOLD, 40));
 
-        // Clickable label for GitHub link
-        JLabel githubLink = new JLabel("Go to GitHub Repository ->");
-        githubLink.setForeground(Color.WHITE);
-        githubLink.setFont(new Font("Arial", Font.ITALIC, 15));
-        githubLink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        githubLink.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                // Open the GitHub repository link
-                openWebpage("https://github.com/rostyslav-bilous/cbl-game");
-            }
-
-        });
-
+        // Layout setup
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(3, 10, 3, 10);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -70,18 +50,18 @@ class StartPanel extends JPanel {
 
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
         add(startButton, gbc);
 
-        gbc.gridy = 2; // Set this for the GitHub link
-        add(githubLink, gbc);
+        gbc.gridy = 2;
+        add(githubButton, gbc);
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.showGamePanel();
-            }
-        });
+        // Debugging panels
+        lossPanelButton = new StyledButton("| (Testing) Game Over Screen");
+        lossPanelButton.addActionListener(e -> game.showLossPanel());
+
+        gbc.gridy = 3;
+        add(lossPanelButton, gbc);
+
     }
 
     // Method to open a webpage

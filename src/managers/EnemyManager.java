@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import core.Game;
 import entities.Enemy;
 import entities.Tower;
 import entities.enemies.*;
@@ -71,7 +72,7 @@ public class EnemyManager {
 
             if (enemy.getX() <= 0) {
                 iterator.remove();
-                TopHUDPanel.decreaseCowCounter();
+                TopHUDPanel.decreaseCowCounter(Game.getInstance());
 
                 // wait 3 seconds
                 // itarator.remove(); 
