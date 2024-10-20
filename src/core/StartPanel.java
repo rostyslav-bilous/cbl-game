@@ -1,12 +1,14 @@
 package core;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 class StartPanel extends JPanel {
 
@@ -38,10 +40,25 @@ class StartPanel extends JPanel {
             }
         });
 
-
         JLabel gameName = new JLabel("Cows vs Aliens");
         gameName.setForeground(Color.WHITE);
-        gameName.setFont(new Font("Arial", Font.BOLD, 32));
+        gameName.setFont(new Font("Arial", Font.BOLD, 40));
+
+        // Clickable label for GitHub link
+        JLabel githubLink = new JLabel("Go to GitHub Repository ->");
+        githubLink.setForeground(Color.WHITE);
+        githubLink.setFont(new Font("Arial", Font.ITALIC, 15));
+        githubLink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        githubLink.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                // Open the GitHub repository link
+                openWebpage("https://github.com/rostyslav-bilous/cbl-game");
+            }
+
+        });
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -56,11 +73,23 @@ class StartPanel extends JPanel {
 
         add(startButton, gbc);
 
+        gbc.gridy = 2; // Set this for the GitHub link
+        add(githubLink, gbc);
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 game.showGamePanel();
             }
         });
+    }
+
+    // Method to open a webpage
+    private void openWebpage(String urlString) {
+        try {
+            Desktop.getDesktop().browse(new URI(urlString));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }

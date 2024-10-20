@@ -28,7 +28,20 @@ public class Tile extends JButton {
         setBackground(Color.GREEN);
         setOpaque(false);  // Make tile transparent
         setContentAreaFilled(false);
-        setBorderPainted(true);
+        setBorderPainted(false);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setBorderPainted(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setBorderPainted(false);
+            }
+        });
 
         addActionListener(new ActionListener() {
             @Override
