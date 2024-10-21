@@ -27,7 +27,16 @@ class StartPanel extends JPanel {
 
         // Start button
         startButton = new StyledButton("Start Game");
-        startButton.addActionListener(e -> game.showGamePanel());
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.resetGamePanel();
+                TopHUDPanel.resetCowCounter();  // Cow counter is static, don't want to change it now
+                TopHUDPanel.resetCurrenWave();
+                game.showGamePanel();
+            }
+        });
+
 
         // GitHub button
         githubButton = new StyledButton("GitHub Repository");

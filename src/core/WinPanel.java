@@ -24,7 +24,15 @@ public class WinPanel extends JPanel{
         winLabel.setFont(new Font("Helvetica", Font.BOLD, 40));
 
         restartButton = new StyledButton("Restart");
-        restartButton.addActionListener(e -> game.showGamePanel());
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.resetGamePanel();
+                TopHUDPanel.resetCowCounter();  // Cow counter is static, don't want to change it now
+                TopHUDPanel.resetCurrenWave();
+                game.showGamePanel();
+            }
+        });
 
         menuButton = new StyledButton("Back to Menu");
         menuButton.addActionListener(e -> game.showStartPanel());

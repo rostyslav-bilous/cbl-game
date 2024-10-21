@@ -1,3 +1,6 @@
+// Repeat reseting the game also in the Start, Loss, Win screens to make sure 
+// it's reset and avoid some bugs related to this mechanism
+
 package hud;
 
 import utils.Constants;
@@ -27,19 +30,19 @@ public class TopHUDPanel extends JPanel{
         
         cowCounter--;
         if (cowCounter <= 0) {
-            game.showLossPanel();  // Trigger the LossPanel
-            TopHUDPanel.resetCowCounter();  // Cow counter is static, don't want to change it now
-            TopHUDPanel.resetCurrenWave();
             game.resetGamePanel();
+            resetCowCounter();  // Cow counter is static, don't want to change it now
+            resetCurrenWave();
+            game.showLossPanel();
         }
     }
 
     public static void checkWave(Game game) {
         if (currentWave > maxWaveCounter) {
-            game.showWinPanel();
-            TopHUDPanel.resetCowCounter();  // Cow counter is static, don't want to change it now
-            TopHUDPanel.resetCurrenWave();
             game.resetGamePanel();
+            resetCowCounter();  // Cow counter is static, don't want to change it now
+            resetCurrenWave();
+            game.showWinPanel();
         }
     }
 

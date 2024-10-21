@@ -92,8 +92,8 @@ public class EnemyManager {
                 int i = newEnemyCounter;
                 while (i > 0) {
                     int randomIndexX = random.nextInt(rows.length);  // Random row index
-                    int row = rows[randomIndexX];  // Get the row number
-                    addEnemy(new StandardAlien(Constants.TILE_WIDTH * 8 + i * 60 + 200 + random.nextInt(Constants.TILE_WIDTH), Constants.TILE_HEIGHT * row + 30));
+                    int row = rows[randomIndexX]; // Get the row number
+                    addEnemy(new StandardAlien(Constants.TILE_WIDTH * 8 + i * 60 + 200, Constants.TILE_HEIGHT * row + 30));
                     i--;
                 }
                 newEnemyCounter--;
