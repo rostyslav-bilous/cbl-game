@@ -41,6 +41,8 @@ public class EnemyManager {
     }
 
     public void update() {
+
+        TopHUDPanel.checkWave(Game.getInstance());
         
         Iterator<Enemy> iterator = enemiesOnGrid.iterator();
         while (iterator.hasNext()) {
@@ -81,24 +83,23 @@ public class EnemyManager {
 
         // Just because
         int[] rows = {0, 1, 2, 3, 4};
-        int[] cols = {5, 6, 7, 8};
         Random random = new Random();
 
+        // Don't ask me how waves work. They just work.
         if (enemiesOnGrid.size() == 0) {
-
             int newEnemyCounter = newEnemyNumber;
             while (newEnemyCounter >= 0) {
-
-                int randomIndexX = random.nextInt(rows.length);  // Random row index
-                int row = rows[randomIndexX];  // Get the row number
-                int randomIndexY = random.nextInt(cols.length);  // Random row index
-                int col = cols[randomIndexY];  // Get the row number
-                addEnemy(new StandardAlien(Constants.TILE_WIDTH * col + 20, Constants.TILE_HEIGHT * row + 30));
+                int i = newEnemyCounter;
+                while (i > 0) {
+                    int randomIndexX = random.nextInt(rows.length);  // Random row index
+                    int row = rows[randomIndexX];  // Get the row number
+                    addEnemy(new StandardAlien(Constants.TILE_WIDTH * 8 + i * 60 + 200 + random.nextInt(Constants.TILE_WIDTH), Constants.TILE_HEIGHT * row + 30));
+                    i--;
+                }
                 newEnemyCounter--;
-
             }
+            TopHUDPanel.increaseCurrentWave();
             newEnemyNumber += 1;
-            
         }
     }
 }

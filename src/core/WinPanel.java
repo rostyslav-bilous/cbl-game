@@ -9,22 +9,22 @@ import java.awt.event.MouseEvent;
 import hud.TopHUDPanel;
 import utils.StyledButton;
 
-public class LossPanel extends JPanel{
+public class WinPanel extends JPanel{
 
-    StyledButton tryAgainButton;
+    StyledButton restartButton;
     StyledButton menuButton;
     
-    public LossPanel(Game game) {
+    public WinPanel(Game game) {
 
         setLayout(new GridBagLayout());
         setBackground(Color.BLACK);
 
-        JLabel lossLabel = new JLabel("Game Over");
-        lossLabel.setForeground(new Color(255, 255, 255));
-        lossLabel.setFont(new Font("Helvetica", Font.BOLD, 40));
+        JLabel winLabel = new JLabel("Operation Successful");
+        winLabel.setForeground(new Color(255, 255, 255));
+        winLabel.setFont(new Font("Helvetica", Font.BOLD, 40));
 
-        tryAgainButton = new StyledButton("Try Again");
-        tryAgainButton.addActionListener(e -> game.showGamePanel());
+        restartButton = new StyledButton("Restart");
+        restartButton.addActionListener(e -> game.showGamePanel());
 
         menuButton = new StyledButton("Back to Menu");
         menuButton.addActionListener(e -> game.showStartPanel());
@@ -36,11 +36,11 @@ public class LossPanel extends JPanel{
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        add(lossLabel, gbc);
+        add(winLabel, gbc);
 
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        add(tryAgainButton, gbc);
+        add(restartButton, gbc);
 
         gbc.gridy = 2;
         add(menuButton, gbc);

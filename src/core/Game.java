@@ -11,6 +11,7 @@ public class Game extends JFrame {
     private StartPanel startPanel; // The start menu panel
     private GamePanel gamePanel;   // The actual game panel
     private LossPanel lossPanel;   // The "Game Over" panel
+    private WinPanel winPanel;     // The "Operation Successful" screen
     private CardLayout cardLayout; // To switch between panels
 
     public Game() {
@@ -26,10 +27,12 @@ public class Game extends JFrame {
         startPanel = new StartPanel(this);
         gamePanel = new GamePanel();
         lossPanel = new LossPanel(this);
+        winPanel = new WinPanel(this);
 
         mainPanel.add(startPanel, "StartPanel");
         mainPanel.add(gamePanel, "GamePanel");
         mainPanel.add(lossPanel, "LossPanel");
+        mainPanel.add(winPanel, "WinPanel");
 
         add(mainPanel);
         pack();
@@ -50,6 +53,11 @@ public class Game extends JFrame {
     // Switch to the LossPanel
     public void showLossPanel() {
         cardLayout.show(mainPanel, "LossPanel");
+        lossPanel.requestFocusInWindow();
+    }
+
+    public void showWinPanel() {
+        cardLayout.show(mainPanel, "WinPanel");
         lossPanel.requestFocusInWindow();
     }
 

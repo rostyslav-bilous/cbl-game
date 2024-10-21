@@ -2,6 +2,8 @@ package entities;
 
 import java.awt.*;
 
+import hud.LeftHUDPanel;
+
 
 public abstract class Enemy{
 
@@ -46,6 +48,7 @@ public abstract class Enemy{
         health -= damage;
         if (health <= 0) {
             alive = false;
+            LeftHUDPanel.getMoneyPanel().increaseMoneyBy(3);
         }
     }
 

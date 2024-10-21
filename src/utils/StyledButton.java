@@ -10,12 +10,12 @@ public class StyledButton extends JButton {
     public StyledButton(String text) {
         
         // Call the superclass constructor to set the button text
-        super(text);
+        super("| " + text);
 
         // Customize the button appearance
         setForeground(new Color(150, 150, 150));
         setBackground(Color.RED);
-        setFont(new Font("Georgia", Font.ITALIC, 15));
+        setFont(new Font("Times New Roman", Font.ITALIC, 15));
         setFocusPainted(false);
         setContentAreaFilled(false);
         setBorderPainted(false);
