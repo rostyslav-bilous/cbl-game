@@ -1,27 +1,22 @@
 package hud;
 
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-
 import entities.Tower;
-import utils.Constants;
-
-import java.util.List;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.lang.constant.Constable;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JPanel;
 
 
 public class TowerListPanel extends JPanel {
     
     private List<Tower> availableTowers = new ArrayList<>();
 
-    public TowerListPanel() {
+    public TowerListPanel(int hudwidth, int hudheight) {
 
-        setLayout(new GridLayout(2, 0));
-        setPreferredSize(new Dimension(1000, 200));
+        setLayout(new GridLayout(0, 1));
+        setPreferredSize(new Dimension(hudwidth, hudheight/2));
         setBackground(Color.RED);
 
         initializeTowerButtons();   
@@ -36,6 +31,9 @@ public class TowerListPanel extends JPanel {
 
             // Add button to the panel
             add(button);
+            //add(Box.createRigidArea(new Dimension(0, 0))); // Adds a fixed vertical spacer between buttons
+            
+            
         }
     }
 }

@@ -9,8 +9,8 @@ public class Constants {
 
     public static final int GRID_BOARD_ROWS = 5;
     public static final int GRID_BOARD_COLS = 9;
-    public static final int TILE_WIDTH = 95;
-    public static final int TILE_HEIGHT = 115;
+    public static final int TILE_WIDTH = 95;//95
+    public static final int TILE_HEIGHT = 115;//115;
 
 
 }
