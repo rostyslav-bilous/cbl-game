@@ -17,8 +17,8 @@ public class FirstContainer extends JPanel {
 
     public FirstContainer() {
         setLayout(new GridBagLayout());
-        setBackground(Color.cyan);
-        //setOpaque(false);
+        //setBackground(Color.cyan);
+        setOpaque(false);
 
         // Create and add left and right thin panels using a helper method
         addSpacingPanel(0, 1, 0.05, 0.9, 1, 1, false); // Left thin panel at (0,1) with weightx = 0.01
@@ -42,8 +42,8 @@ public class FirstContainer extends JPanel {
         if (ishud) {
             // Create a midPanel to hold the HUD
             JPanel midPanel = new JPanel();
-            //midPanel.setOpaque(false); // Set opaque to true to visualize it
-            midPanel.setBackground(Color.PINK); // Example background color
+            midPanel.setOpaque(false); // Set opaque to true to visualize it
+            //midPanel.setBackground(Color.PINK); // Example background color
             midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
 
             // Add the LeftHUDPanel to the midPanel

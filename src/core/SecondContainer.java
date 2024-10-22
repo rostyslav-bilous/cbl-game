@@ -11,17 +11,19 @@ public class SecondContainer extends JPanel {
     private GridBoard gridBoard;
 
     public SecondContainer() {
-        setBackground(Color.RED);
+
+        setOpaque(false);
+        //setBackground(Color.RED);
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Vertical stacking
 
-        // Create a container for the center section (GridBoard and Barn side by side)
-        JPanel centerContainer = new JPanel();
-        centerContainer.setLayout(new BoxLayout(centerContainer, BoxLayout.X_AXIS));
-        centerContainer.setBackground(Color.CYAN);
-
+        
         // Create a container for the GridBoard
         JPanel gridMapContainer = new JPanel(new GridBagLayout());
-        gridMapContainer.setBackground(Color.yellow);
+
+        //gridMapContainer.setBackground(Color.yellow);
+        gridMapContainer.setOpaque(false);
+        
         gridMapContainer.setPreferredSize(new Dimension( Constants.WINDOW_WIDTH/10 , 600));
         gridBoard = new GridBoard();
         gridMapContainer.add(gridBoard);
@@ -32,7 +34,7 @@ public class SecondContainer extends JPanel {
         // Add the GridBoard to the center container
 
 
-                centerContainer.add(gridMapContainer);
+        
 
         // Create a container for the top section of the HUD
         JPanel topHUDContainer = new JPanel(new BorderLayout());

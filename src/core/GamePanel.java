@@ -5,6 +5,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import map.GridBoard;
 import utils.Constants;
+import utils.ImageLoader;
+import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
 class GamePanel extends JPanel implements ActionListener {
 
@@ -12,26 +15,37 @@ class GamePanel extends JPanel implements ActionListener {
     private GridBoard gridBoard;
     private FirstContainer firstContainer;
     private SecondContainer secondContainer;
+    private BufferedImage backgroundImage;
 
 
     public GamePanel() {
         setPreferredSize(new Dimension(Constants.WINDOW_WIDTH , Constants.WINDOW_HEIGHT));
-        setBackground(Color.blue);
+
+        setOpaque(false);
+        //setBackground(Color.blue);
+
         setLayout(new GridBagLayout());  // Align panels horizontally (left and right)
         GridBagConstraints gbc = new GridBagConstraints();
+        backgroundImage = ImageLoader.loadImage("src/FinalGrass2.png");
+
+
 
         // Create the first container (left HUD part)
         JPanel leftSide = new JPanel();
         leftSide.setLayout(new BorderLayout());
         firstContainer = new FirstContainer();
-        leftSide.setBackground(Color.BLACK);
+        leftSide.setOpaque(false);
         leftSide.add(firstContainer, BorderLayout.CENTER);
 
         JPanel rightSide = new JPanel();
         rightSide.setLayout(new BorderLayout());
         secondContainer = new SecondContainer();
-        rightSide.setBackground(Color.CYAN);
+
+        rightSide.setOpaque(false);
+        //rightSide.setBackground(Color.CYAN);
+
         rightSide.add(secondContainer, BorderLayout.CENTER);
+        
         
         
 
@@ -55,10 +69,17 @@ class GamePanel extends JPanel implements ActionListener {
         timer = new Timer(1000 / Constants.GAME_FPS, this);
         timer.start();
     }
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // If the image is loaded, draw it
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this); // Draw the image to cover the entire panel
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        // updateGameLogic();
         repaint();
     }
 
