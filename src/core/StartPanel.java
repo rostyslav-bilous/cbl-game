@@ -44,7 +44,7 @@ class StartPanel extends JPanel {
 
         JLabel gameName = new JLabel("Cows vs Aliens");
         gameName.setForeground(new Color(255, 255, 255));
-        gameName.setFont(new Font("Helvetica", Font.BOLD, 40));
+        gameName.setFont(new Font("Helvetica", Font.BOLD, 44));
 
         // Layout setup
         GridBagConstraints gbc = new GridBagConstraints();
@@ -77,26 +77,26 @@ class StartPanel extends JPanel {
 
         // Project Group Label in the second column
         developedByLabel = new JLabel("Project Group 38");
-        developedByLabel.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+        developedByLabel.setFont(new Font("Times New Roman", Font.ITALIC, 17));
         developedByLabel.setForeground(new Color(150, 150, 150));
 
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         add(developedByLabel, gbc);
 
         author1Label = new JLabel("| Rostyslav Bilous (2154803)");
-        author1Label.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+        author1Label.setFont(new Font("Times New Roman", Font.ITALIC, 17));
         author1Label.setForeground(new Color(150, 150, 150));
 
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         add(author1Label, gbc);
 
         author2Label = new JLabel("| Suhail Abbas (2141523)");
-        author2Label.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+        author2Label.setFont(new Font("Times New Roman", Font.ITALIC, 17));
         author2Label.setForeground(new Color(150, 150, 150));
 
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         add(author2Label, gbc);
 
     }

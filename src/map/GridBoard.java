@@ -32,7 +32,7 @@ public class GridBoard extends JPanel {
         height = rows * tileHeight;
 
         setLayout(new GridLayout(rows, cols));
-        setBackground(Color.BLACK);
+        setOpaque(false);
         setPreferredSize(new Dimension(width, height));
 
         towerManager = new TowerManager();

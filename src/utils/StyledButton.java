@@ -15,7 +15,7 @@ public class StyledButton extends JButton {
         // Customize the button appearance
         setForeground(new Color(150, 150, 150));
         setBackground(Color.RED);
-        setFont(new Font("Times New Roman", Font.ITALIC, 15));
+        setFont(new Font("Times New Roman", Font.ITALIC, 17));
         setFocusPainted(false);
         setContentAreaFilled(false);
         setBorderPainted(false);

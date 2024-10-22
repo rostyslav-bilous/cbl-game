@@ -3,6 +3,7 @@ package map;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
 import entities.Tower;
 import entities.towers.DairyPotter;
@@ -28,18 +29,19 @@ public class Tile extends JButton {
         setBackground(Color.GREEN);
         setOpaque(false);  // Make tile transparent
         setContentAreaFilled(false);
-        setBorderPainted(false);
+        setBorderPainted(true);
+        setBorder(new LineBorder(Color.WHITE, 1));
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                setBorderPainted(true);
+                setBorder(new LineBorder(Color.WHITE, 3));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                setBorderPainted(false);
+                setBorder(new LineBorder(Color.WHITE, 1));
             }
         });
 
