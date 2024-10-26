@@ -1,8 +1,7 @@
 package entities;
 
-import java.awt.*;
-
 import hud.LeftHUDPanel;
+import java.awt.*;
 
 
 public abstract class Enemy{

@@ -21,7 +21,7 @@ public class LeftHUDPanel extends JPanel {
         //setOpaque(false);
         
 
-        hudimage = ImageLoader.loadImage("src/HUD.png");
+        hudimage = ImageLoader.loadImage("src/images/HUD.png");
         
         moneyPanel = new MoneyPanel(hudwidth, hudheight);
         

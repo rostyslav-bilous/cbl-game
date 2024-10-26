@@ -2,12 +2,11 @@ package entities.towers;
 
 import entities.Projectile;
 import entities.Tower;
-import managers.ProjectileManager;
-import map.GridBoard;
-import map.Tile;
-
 import java.awt.*;
-// import entities.Projectile;
+import java.awt.image.BufferedImage;
+import map.GridBoard;
+import map.Tile;  // Import the ImageLoader for loading images
+import utils.ImageLoader;
 
 public class MooCop extends Tower {
 
@@ -16,15 +15,20 @@ public class MooCop extends Tower {
     public static final int DEFAULT_ATTACK_SPEED = 60;
     public static final int DEFAULT_PRICE = 20;
 
+    // Store the image of MooCop
+    private BufferedImage mooCopImage;
+
     public MooCop(int x, int y, Tile tile) {
-        super(x, y, 50, 70, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE, tile);
+        super(x, y, 95, 100, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE, tile);
+
+        // Load the MooCop image (make sure the path is correct)
+        mooCopImage = ImageLoader.loadImage("src/images/MooCop.png");
     }
 
     @Override
     public void act() {
-        
         if (canAct()) {
-            Projectile projectile = new Bullet(x + width, y + 20);
+            Projectile projectile = new Bullet(x + width/2, y + 50);
             GridBoard.getProjectileManager().add(projectile);
             resetCooldown();
         }
@@ -36,21 +40,22 @@ public class MooCop extends Tower {
 
     @Override
     public void draw(Graphics g) {
-        
-        g.setColor(Color.CYAN);
-        g.fillOval(x, y, width, height);
+        if (mooCopImage != null) {
+            // Draw the loaded image at the tower's coordinates
+            g.drawImage(mooCopImage, x, y, width, height, null);
+        } else {
+            // Fallback: Draw a placeholder if the image is not loaded
+            g.setColor(Color.CYAN);
+            g.fillOval(x, y, width, height);
+        }
 
-        // Debugging
+        // For debugging, you can still draw the cooldown and health info
         g.setColor(Color.WHITE);
         g.drawString("Cooldown: " + getActionCooldown(), x, y - 15);
         g.setColor(Color.GREEN);
         g.drawString("HP: " + getHealth(), x, y - 5);
-        
-        // Debugging
-        // System.out.println("Drawing MooCop at (" + x + ", " + y + ") with size " + width + "x" + height);
     }
 }
-
 
 class Bullet extends Projectile {
 
@@ -62,9 +67,9 @@ class Bullet extends Projectile {
         super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_SPEED, MooCop.getDamage());
     }
 
+    @Override
     public void draw(Graphics g) {
-
-        g.setColor(Color.GREEN);
+        g.setColor(Color.white);
         g.fillOval(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 }

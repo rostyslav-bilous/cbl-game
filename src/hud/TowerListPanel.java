@@ -8,10 +8,9 @@ import javax.swing.JPanel;
 public class TowerListPanel extends JPanel {
 
     public TowerListPanel(int hudwidth, int hudheight) {
-
         setLayout(new GridLayout(0, 1));
         setPreferredSize(new Dimension(hudwidth, hudheight / 2));
-        setBackground(Color.RED);
+        setBackground(Color.WHITE);
 
         // Initialize tower buttons
         initializeTowerButtons();
@@ -34,3 +33,5 @@ public class TowerListPanel extends JPanel {
         add(button);  // Add the button to the panel
     }
 }
+
+

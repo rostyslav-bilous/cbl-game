@@ -1,16 +1,11 @@
 package map;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
-
-import entities.Projectile;
-import entities.Tower;
-import entities.enemies.StandardAlien;
-import entities.towers.MooCop;
-import utils.Constants;
 import managers.*;
+import utils.Constants;
+import utils.ImageLoader;
 
 public class GridBoard extends JPanel {
 
@@ -26,14 +21,20 @@ public class GridBoard extends JPanel {
     private EnemyManager enemyManager;
     private static ProjectileManager projectileManager; // Easier to maintain if static
 
+    // Grid image for the background
+    private BufferedImage GridImage;
 
     public GridBoard() {
+
         width = cols * tileWidth;
         height = rows * tileHeight;
 
         setLayout(new GridLayout(rows, cols));
-        setOpaque(false);
+        setOpaque(false); // Ensure background is drawn correctly
         setPreferredSize(new Dimension(width, height));
+
+        // Load the grid image (floor background)
+        GridImage = ImageLoader.loadImage("src/Floor.png");
 
         towerManager = new TowerManager();
         enemyManager = new EnemyManager(towerManager);
@@ -46,24 +47,22 @@ public class GridBoard extends JPanel {
             }
         }
 
-        // Added a test enemy to continue with tower attacking and collision detection
-        
+        // Add test enemy for tower attacking and collision detection
     }
 
     public TowerManager getTowerManager() {
-        return towerManager;    
+        return towerManager;
     }
 
     public EnemyManager getEnemyManager() {
-        return enemyManager;    
+        return enemyManager;
     }
 
     public static ProjectileManager getProjectileManager() {
-        return projectileManager;    
+        return projectileManager;
     }
 
     public void updateBoard() {
-
         towerManager.update();
         enemyManager.update();
         projectileManager.update();
@@ -72,6 +71,13 @@ public class GridBoard extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        // Draw the grid image as the background
+        if (GridImage != null) {
+            g.drawImage(GridImage, 0, 0, getWidth(), getHeight(), this);
+        }
+
+        // Now draw the grid components
         updateBoard();
         towerManager.draw(g);
         enemyManager.draw(g);

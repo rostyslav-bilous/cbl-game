@@ -1,14 +1,13 @@
 package map;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.JButton;
-import javax.swing.border.LineBorder;
-
 import entities.Tower;
 import entities.towers.DairyPotter;
 import entities.towers.MooCop;
 import hud.LeftHUDPanel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 import utils.Constants;
 
 public class Tile extends JButton {
@@ -52,8 +51,8 @@ public class Tile extends JButton {
 
                     LeftHUDPanel.getMoneyPanel().decreaseMoneyBy(selectedTowerPrice);
                     selectedTowerPrice = 0;
-                    int x = col * Constants.TILE_WIDTH + 22;
-                    int y = row * Constants.TILE_HEIGHT + 25;
+                    int x = col * Constants.TILE_WIDTH + 12;
+                    int y = row * Constants.TILE_HEIGHT + 10;
                     System.out.println("Placing tower at: (" + x + ", " + y + ")");
 
                     Tower tower = createTower(selectedTower, x, y);

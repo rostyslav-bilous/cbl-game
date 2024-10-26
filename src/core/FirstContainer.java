@@ -24,8 +24,8 @@ public class FirstContainer extends JPanel {
         addSpacingPanel(0, 1, 0.05, 0.9, 1, 1, false); // Left thin panel at (0,1) with weightx = 0.01
         addSpacingPanel(2, 1, 0.05, 0.9, 1, 1, false); // Right thin panel at (2,1) with weightx = 0.01
         addSpacingPanel(1, 1, 0.9, 0.9, 1, 1, true); // Mid panel
-        addSpacingPanel(0, 0, 1, 0.05, 3, 1, false); // Top
-        addSpacingPanel(0, 2, 1, 0.05, 3, 1, false); // Bottom
+        addSpacingPanel(0, 0, 1, 0.05, 3, 1, false); // Top spacer
+        addSpacingPanel(0, 2, 1, 0.05, 3, 1, false); // Bottom spacer
     }
 
     // Method to create and add a thin panel
