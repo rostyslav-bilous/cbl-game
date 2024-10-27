@@ -12,7 +12,7 @@ public class MoneyPanel extends JPanel{
     private BufferedImage MoneyImage;
     private int money = 110;
 
-    public MoneyPanel(int hudwidth, int hudheight) {
+    public MoneyPanel() {
         
         MoneyImage = ImageLoader.loadImage("src/images/MilkLeft.png");
 

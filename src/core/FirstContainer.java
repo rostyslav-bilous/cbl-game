@@ -1,14 +1,10 @@
 package core;
 
-import java.awt.Color;
+import hud.LeftHUDPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import hud.LeftHUDPanel;
 
 public class FirstContainer extends JPanel {
     private LeftHUDPanel hud1;
@@ -16,8 +12,9 @@ public class FirstContainer extends JPanel {
     public int midPanelHeight;
 
     public FirstContainer() {
+        
+
         setLayout(new GridBagLayout());
-        //setBackground(Color.cyan);
         setOpaque(false);
 
         // Create and add left and right thin panels using a helper method
@@ -43,28 +40,15 @@ public class FirstContainer extends JPanel {
             // Create a midPanel to hold the HUD
             JPanel midPanel = new JPanel();
             midPanel.setOpaque(false); // Set opaque to true to visualize it
-            //midPanel.setBackground(Color.PINK); // Example background color
             midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
 
             // Add the LeftHUDPanel to the midPanel
-            hud1 = new LeftHUDPanel(midPanelWidth, midPanelHeight);
+            hud1 = new LeftHUDPanel();
             midPanel.add(hud1);
 
-            // Add a component listener to the midPanel to get its dimensions after it's been laid out
-            midPanel.addComponentListener(new ComponentAdapter() {
-                @Override
-                public void componentResized(ComponentEvent e) {
-                    midPanelWidth = midPanel.getWidth();
-                    midPanelHeight = midPanel.getHeight();
-                    // Re-initialize the HUD with updated dimensions if necessary
-                    hud1.setPreferredSize(new Dimension(midPanelWidth, midPanelHeight));
-                    midPanel.revalidate(); // Revalidate to apply the new size
-                }
-            });
 
             // Add the midPanel (which now contains the HUD) to the FirstContainer
             add(midPanel, gbc2);
-            
         } else {
             // Otherwise, add a thin transparent panel
             JPanel thinPanel = new JPanel();
