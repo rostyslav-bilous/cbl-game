@@ -19,7 +19,7 @@ public class MooCop extends Tower {
     private BufferedImage mooCopImage;
 
     public MooCop(int x, int y, Tile tile) {
-        super(x, y, 95, 100, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE, tile);
+        super(x, y, 110, 100, DEFAULT_HEALTH, DEFAULT_DAMAGE, DEFAULT_ATTACK_SPEED, DEFAULT_PRICE, tile);
 
         // Load the MooCop image (make sure the path is correct)
         mooCopImage = ImageLoader.loadImage("src/images/MooCop.png");

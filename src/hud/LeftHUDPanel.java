@@ -14,19 +14,19 @@ public class LeftHUDPanel extends JPanel {
     TowerListPanel towerListPanel;
 
 
-    public LeftHUDPanel(int hudwidth, int hudheight) {
+    public LeftHUDPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));  // Stack vertically
-        setPreferredSize(new Dimension(hudwidth, hudheight));
+        //setPreferredSize(new Dimension(hudwidth, hudheight));
         setBackground(Color.GREEN);
         //setOpaque(false);
         
 
         hudimage = ImageLoader.loadImage("src/images/HUD.png");
         
-        moneyPanel = new MoneyPanel(hudwidth, hudheight);
+        moneyPanel = new MoneyPanel();
         
         
-        towerListPanel = new TowerListPanel(hudwidth, hudheight);
+        towerListPanel = new TowerListPanel();
 
         add(Box.createRigidArea(new Dimension(0, 50))); // Smaller vertical spacer
         add(moneyPanel); 

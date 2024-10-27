@@ -34,7 +34,7 @@ public class GridBoard extends JPanel {
         setPreferredSize(new Dimension(width, height));
 
         // Load the grid image (floor background)
-        GridImage = ImageLoader.loadImage("src/Floor.png");
+        GridImage = ImageLoader.loadImage("src/images/MudFloor.png");
 
         towerManager = new TowerManager();
         enemyManager = new EnemyManager(towerManager);

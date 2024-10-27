@@ -1,5 +1,4 @@
 package hud;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -7,9 +6,9 @@ import javax.swing.JPanel;
 
 public class TowerListPanel extends JPanel {
 
-    public TowerListPanel(int hudwidth, int hudheight) {
+    public TowerListPanel() {
         setLayout(new GridLayout(0, 1));
-        setPreferredSize(new Dimension(hudwidth, hudheight / 2));
+        setPreferredSize(new Dimension(0, 0));
         setBackground(Color.WHITE);
 
         // Initialize tower buttons
