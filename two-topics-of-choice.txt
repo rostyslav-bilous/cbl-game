@@ -1,0 +1,5 @@
+Visual Design Report
+https://docs.google.com/document/d/1ndyqDw4NOCZ8IaPCe4U994A6djjN6gLuUkvuJs5g1rU/edit?usp=sharing
+
+GitHub Repo
+https://github.com/rostyslav-bilous/cbl-game
